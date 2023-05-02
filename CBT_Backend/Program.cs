@@ -36,7 +36,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
 
     });
-    /////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
@@ -48,6 +48,14 @@ builder.Services.AddScoped<IAssessment, AssessmentServices>();
 builder.Services.AddScoped<IOptions, OptionsServices>();
 builder.Services.AddScoped<ILogin, Login_Service>();
 
+//Adding CORS to the web api
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowAllOrigin", options => options.AllowAnyOrigin()
+      .AllowAnyHeader()
+      .AllowAnyMethod()
+      .AllowAnyHeader());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -55,6 +63,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -66,6 +75,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAllOrigin");
 
 app.MapControllers();
 

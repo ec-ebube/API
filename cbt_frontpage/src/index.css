@@ -1,0 +1,159 @@
+/* .n404f {
+  color: #f2f2f2;
+} */
+/* .to-home {
+
+} */
+
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+/*==========================Styling for the header===========================*/
+/* .Header {
+  background-color: #faf7f7;
+  height: 10vh;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.heading {
+  color: #08e652;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 3vh;
+  font-family: 'Courier New', Courier, monospace;
+} */
+.App {
+  text-align: center;
+  /* align-content: center;
+  width: 1000px; */
+}
+
+/*=================================== Styling for the forms=================================== */
+.regform,
+.loginform {
+  background-color: #bdadad;
+  height: 79vh;
+  width: 20vw;
+  padding: 1vh;
+  box-shadow: 1px 2px 4px #705858;
+  padding: 4rem;
+}
+.Login,
+.CreateAcct {
+  align-items: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+.formText {
+  color: #08e652;
+  font-weight: bold;
+  font-size: 0.7cm;
+  font-family: "Courier New", Courier, monospace;
+}
+/*
+
+ */
+
+/*base styles*/
+* {
+  /* margin: 0; */
+  font-family: "Courier New", Courier, monospace;
+  /* background-color: #bdadad; */
+  color: #333;
+  width:auto;
+}
+*::selection {
+  background-color: #196e35;
+  color: #45fd83;
+}
+
+.Header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  max-width: 1020px;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+  background-color: #08e652;
+}
+.Header h1 {
+  color: #ffe;
+  cursor: pointer;
+}
+.Header .links {
+  margin-left: auto;
+}
+.Header .Link {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.Header .Link:hover {
+  color: #ffe;
+}
+.content {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.forform {
+  background-color: rgba(0, 217, 255, 0);
+  border: #08e65200;
+  border-bottom: 2px solid #774c4c;
+  width: 15rem;
+  height: 2rem;
+  margin-bottom: 2px auto;
+}
+
+/* For the users */
+.user-preview {
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px dashed #774c4c;
+  text-align: left;
+}
+.user-preview:hover {
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.137);
+}
+.user-preview h3 {
+  font-size: 20px;
+  color: #08e652;
+  margin-bottom: 8px;
+}
+
+
+/* For the footer */
+ .footer {
+  text-align: center;
+  padding-bottom: 3rem;
+  margin: 1rem auto;
+}
+
+/*.contactLinks {
+  display: flex;
+  min-width: 90px;
+  max-width: 100px;
+}*/
+
+.footerLinks {
+  text-decoration: none;
+  padding: 2rem;
+  color: #f2f2f2;
+  background-color: #836868;
+}
+.footerLinks:hover {
+  color: #08e652;
+}

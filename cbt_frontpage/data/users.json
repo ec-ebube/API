@@ -1,0 +1,28 @@
+{
+    "users": [
+        {
+            "firstName": "Emmanuel",
+            "lastName": "Chimdiebube",
+            "Email": "chimdiebube@gmail.com",
+            "PhoneNumber": "09076011377",
+            "password": "mypassword",
+            "id": 1
+        },
+        {
+            "firstName": "Chinyere",
+            "lastName": "Prosper",
+            "Email": "prosper@gmail.com",
+            "PhoneNumber": "09051901377",
+            "password": "gjahgfadya",
+            "id": 2
+        },
+        {
+            "firstName": "Emmanuel",
+            "lastName": "Best",
+            "Email": "emmanuelbest@gmail.com",
+            "PhoneNumber": "09009144582",
+            "password": "bestemmanuel",
+            "id": 4
+        }
+    ]
+}
