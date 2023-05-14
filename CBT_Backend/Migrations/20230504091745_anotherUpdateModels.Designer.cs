@@ -4,6 +4,7 @@ using CBT_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CBT_Backend.Migrations
 {
     [DbContext(typeof(CBT_DbContext))]
-    partial class CBT_DbContextModelSnapshot : ModelSnapshot
+    [Migration("20230504091745_anotherUpdateModels")]
+    partial class anotherUpdateModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,6 @@ namespace CBT_Backend.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Answer")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CourseId")
                         .HasColumnType("nvarchar(max)");
 
@@ -38,18 +37,6 @@ namespace CBT_Backend.Migrations
 
                     b.Property<DateTime>("Created_at")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Option_A")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Option_B")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Option_C")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Option_D")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Question")
                         .HasColumnType("nvarchar(max)");
@@ -84,6 +71,42 @@ namespace CBT_Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("CBT_Backend.Models.Options", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AssessmentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Option_A")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option_B")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option_C")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option_D")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssessmentId");
+
+                    b.ToTable("Options");
                 });
 
             modelBuilder.Entity("CBT_Backend.Models.Users", b =>
@@ -177,6 +200,15 @@ namespace CBT_Backend.Migrations
                     b.Navigation("Courses");
                 });
 
+            modelBuilder.Entity("CBT_Backend.Models.Options", b =>
+                {
+                    b.HasOne("CBT_Backend.Models.Assessment", "Assessment")
+                        .WithMany("Options")
+                        .HasForeignKey("AssessmentId");
+
+                    b.Navigation("Assessment");
+                });
+
             modelBuilder.Entity("CoursesUsers", b =>
                 {
                     b.HasOne("CBT_Backend.Models.Courses", null)
@@ -190,6 +222,11 @@ namespace CBT_Backend.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CBT_Backend.Models.Assessment", b =>
+                {
+                    b.Navigation("Options");
                 });
 
             modelBuilder.Entity("CBT_Backend.Models.Courses", b =>

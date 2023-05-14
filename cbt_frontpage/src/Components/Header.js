@@ -1,15 +1,29 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import { Logout, SupervisedUserCircle } from "@mui/icons-material";
+// import { loginUserURL } from "../Endpoints";
+// import useFetch from "../hooks/useFetch";
 const Header = () => {
-  
+
+  // const { data, error } = useFetch(loginUserURL)
+
   return (
-    <nav className='Header'>
-      <h1 className='heading'>EverGreen CBT App</h1>
-      <div className="links">
-        <Link to="/" className="Link">Home</Link>
-        <Link to="/Questions" className="Link">Create Question</Link>
-      </div>
-    </nav>
+    <div>
+      <nav className='Header'>
+        <h1 className='heading'> <a href="/"> EverGreen CBT App </a></h1>
+        <div className="links">
+          <Button href="/Users" className="Link" variant="text" color="error" startIcon={<SupervisedUserCircle className="logoutIcon" />}>Users</Button>
+          <Button to="/Questions" className="Link" variant="text" color="error" startIcon={<Logout className="logoutIcon" />}>Log Out</Button>
+        </div>
+      </nav>
+      {/* <h3>
+        {error && <p>{Error}</p>}
+        {data && (
+
+        )}
+      </h3> */}
+    </div>
   );
 }
- 
+
 export default Header;

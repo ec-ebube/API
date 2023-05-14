@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vgcDXIMyD85WeKHFLnyxa3t88DdNiu0KdRO+kOwQoHXwq+ZaGJus6pY6MNZog77MSQIlUnPGDYuEk0vH2zQ0eg==",
+  "dgSpecHash": "fxtFnRVbe1g74kib0QvMdFOAPZwJ0vE7YIakUl2jCMhUPX1R4K5FcTBtlq3TWTIIxb8Kfv3fuBSJRCPwLV4Q8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Onwe\\Documents\\API\\CBT_Backend\\CBT_Backend.csproj",
+  "projectFilePath": "C:\\Users\\Onwe\\documents\\api\\cbt_backend\\CBT_Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Onwe\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\Onwe\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

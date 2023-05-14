@@ -67,13 +67,13 @@ namespace CBT_Backend.Services
         {
             try
             {
-                var course = _cbtContext!.Courses.Where(a => a.Id == id).Include(a => a.Assessments);
+                var course = _cbtContext!.Courses.Where(a => a.Id == id)
+                .Include(asses => asses.Assessments);
                 if (course == null)
                 {
                     return null!;
                 }
-                var allCourses = await course!.ThenInclude(o => o.Options)
-                .FirstOrDefaultAsync();
+                var allCourses = await course!.FirstOrDefaultAsync();
                 return allCourses!;
             }
             catch (System.Exception ex)

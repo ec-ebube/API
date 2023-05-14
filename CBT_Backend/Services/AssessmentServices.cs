@@ -25,6 +25,11 @@ namespace CBT_Backend.Services
                 newAssessment.Id = id.ToString();
                 newAssessment.CourseId = (assessment.CourseId);
                 newAssessment.Question = assessment.Question;
+                newAssessment.Option_A = assessment.Option_A;
+                newAssessment.Option_B = assessment.Option_B;
+                newAssessment.Option_C = assessment.Option_C;
+                newAssessment.Option_D = assessment.Option_D;
+                newAssessment.Answer = assessment.Answer;
                 newAssessment.Created_at = DateTime.Now;
                 newAssessment.Updated_at = DateTime.Now;
 
@@ -66,7 +71,7 @@ namespace CBT_Backend.Services
         {
             try
             {
-                var assess = _cbtContext!.Assessments.Where(a => a.Id == id).Include(o => o.Options).FirstAsync();
+                var assess = _cbtContext!.Assessments.Where(a => a.Id == id).FirstAsync();
                 if (assess == null)
                 {
                     return null!;
@@ -85,7 +90,7 @@ namespace CBT_Backend.Services
         {
             try
             {
-                var assess = await _cbtContext!.Assessments.OrderBy(x => x.CourseId).Include(o => o.Options).ToListAsync();
+                var assess = await _cbtContext!.Assessments.OrderBy(x => x.Created_at).ToListAsync();
                 if (assess.Count == 0)
                 {
                     return null!;
@@ -111,6 +116,11 @@ namespace CBT_Backend.Services
                 }
                 editAssess.CourseId = assessment.CourseId;
                 editAssess.Question = assessment.Question;
+                editAssess.Option_A = assessment.Option_A;
+                editAssess.Option_B = assessment.Option_B;
+                editAssess.Option_C = assessment.Option_C;
+                editAssess.Option_D = assessment.Option_D;
+                editAssess.Answer = assessment.Answer;
                 editAssess.Updated_at = DateTime.Now;
                 _cbtContext.Assessments.Attach(editAssess);
                 _cbtContext.SaveChanges();

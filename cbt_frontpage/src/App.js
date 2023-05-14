@@ -6,22 +6,25 @@ import CreateAcct from './Components/CreateAcct';
 import Home from './Components/Home';
 import NotFound from './NotFound';
 import Users from './Components/Users';
+import Course from './Components/Course';
+import Corrections from './Components/Corrections';
 
 function App() {
-
 
   return (
     // All should be protected except login and register
     <div className="App">
       <Header />
       <div className="content">
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/CreateAcct' element={<CreateAcct />} />
-        <Route path='/Users' element={<Users />} />
-        <Route path='*' element={<NotFound />}/> 
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/CreateAcct' element={<CreateAcct />} />
+          <Route path='/Users' element={<Users />} />
+          <Route path='/courses/:Id' element={<Course />} />
+          <Route path='/answers/:Id' element={<Corrections />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
       </div>
       <Footer />
     </div>

@@ -97,7 +97,7 @@ namespace CBT_Backend.Services
         {
             try
             {
-                var users = await _cbtContext!.Users.OrderBy(x => x.FirstName).Include(c => c.Course).ToListAsync();
+                var users = await _cbtContext!.Users.OrderByDescending(x => x.Created_at).Include(c => c.Course).ToListAsync();
                 if (users.Count == 0)
                 {
                     return null!;

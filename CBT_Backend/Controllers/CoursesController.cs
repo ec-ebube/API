@@ -36,7 +36,7 @@ namespace CBT_Backend.Controllers
             }
         }
 
-        [HttpGet("{id}/get")]
+        [HttpGet("{Id}/get")]
         public async Task<ActionResult> getsingleCourse([FromRoute] string Id)
         {
             var course = await _icourses!.GetCourse(Id);

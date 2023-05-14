@@ -3594,11 +3594,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Onwe\\Documents\\API\\CBT_Backend\\CBT_Backend.csproj",
+      "projectUniqueName": "C:\\Users\\Onwe\\documents\\api\\cbt_backend\\CBT_Backend.csproj",
       "projectName": "CBT_Backend",
-      "projectPath": "C:\\Users\\Onwe\\Documents\\API\\CBT_Backend\\CBT_Backend.csproj",
+      "projectPath": "C:\\Users\\Onwe\\documents\\api\\cbt_backend\\CBT_Backend.csproj",
       "packagesPath": "C:\\Users\\Onwe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Onwe\\Documents\\API\\CBT_Backend\\obj\\",
+      "outputPath": "C:\\Users\\Onwe\\documents\\api\\cbt_backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Onwe\\AppData\\Roaming\\NuGet\\NuGet.Config",

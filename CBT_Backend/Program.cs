@@ -45,7 +45,6 @@ options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoop
 builder.Services.AddScoped<IUsers, UsersServices>();
 builder.Services.AddScoped<ICourses, CoursesServices>();
 builder.Services.AddScoped<IAssessment, AssessmentServices>();
-builder.Services.AddScoped<IOptions, OptionsServices>();
 builder.Services.AddScoped<ILogin, Login_Service>();
 
 //Adding CORS to the web api
@@ -53,8 +52,7 @@ builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowAllOrigin", options => options.AllowAnyOrigin()
       .AllowAnyHeader()
-      .AllowAnyMethod()
-      .AllowAnyHeader());
+      .AllowAnyMethod());
 });
 
 builder.Services.AddControllers();
@@ -64,6 +62,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors("AllowAllOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -76,7 +75,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseCors("AllowAllOrigin");
 
 app.MapControllers();
 

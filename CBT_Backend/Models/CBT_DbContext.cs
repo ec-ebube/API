@@ -14,7 +14,6 @@ namespace CBT_Backend.Models
         }
         public DbSet<Assessment> Assessments {get; set;} = null!;
         public DbSet<Courses> Courses {get; set;} = null!;
-        public DbSet<Options> Options {get; set;} = null!;
         public DbSet<Users> Users {get; set;} = null!;
     }
 }

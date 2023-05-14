@@ -5,9 +5,9 @@ const Users = () => {
     // setUsers([...users])
     const {data, isLoading, error} = useFetch('https://localhost:7097/api/users/getAll')
     
-    if(data){
-        console.log(data);
-    }
+    // if(data){
+    //     console.log(data);
+    // }
 
 
     return (
