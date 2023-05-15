@@ -3,15 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 import { /*singleCourseURL,*/ assessmentsURL } from '../Endpoints'
 import { Button, FormControl, FormControlLabel, FormLabel, Link, Radio, RadioGroup, Stack } from '@mui/material';
-// import { Radio } from '@mui/icons-material';
-// import Options from './Options';
 
-export const choose = [];
+const choose = [];
 function Course() {
-  // var optionA = ''
-  // var optionB = ''
-  // var optionC = ''
-  // var optionD = ''
 
 
   const navigate = useNavigate();
@@ -21,7 +15,6 @@ function Course() {
   const { data, isLoading, error } = useFetch(url);
   let [answered, setAnswered] = useState(0);
   const [checked] = useState([]);
-  // let score = 0
 
   var courseAssessment = []
   var ansArray = []
@@ -83,7 +76,6 @@ function Course() {
     if (data) {
       console.log(choose);
       navigate('/answers/' + Id)
-      // export { choose };
     } else {
       console.log("No data found");
     }
@@ -100,8 +92,6 @@ function Course() {
             <FormControl
               className='QuestionView'
               key={index}
-              // direction='column'
-              // spacing={-3}
               sx={{
                 maxWidth: '70vw',
                 justifyContent: 'center'
@@ -116,7 +106,6 @@ function Course() {
                 })}
 
                 sx={{
-                  // marginRight: 'auto',
                   width: '40vw',
                   textAlign: 'left',
                   justifyContent: 'center'
@@ -152,5 +141,7 @@ function Course() {
     </div >
   )
 }
+
+export const choosed = choose;
 
 export default Course

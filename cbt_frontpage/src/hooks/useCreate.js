@@ -31,6 +31,7 @@ function useCreate() {
             setIsLoading(false)
             setData(res.json())
             return res.json()
+            // localStorage.setItem('user': JSON.stringify(res))
             // console.log(resData);
         } catch (error) {
             setError(error.message)
