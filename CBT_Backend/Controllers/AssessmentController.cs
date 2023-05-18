@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CBT_Backend.DTO;
 using CBT_Backend.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CBT_Backend.Controllers
@@ -18,6 +19,7 @@ namespace CBT_Backend.Controllers
             _iassessment = iassessments;
         }
 
+        [Authorize]
         [HttpGet("getAll")]
         public async Task<ActionResult> getAssessments()
         {
@@ -43,6 +45,7 @@ namespace CBT_Backend.Controllers
             return Ok(assess);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost("create")]
         public async Task<ActionResult> CreateAssessment([FromForm] Assessment_DTO assessment)
         {
@@ -71,6 +74,7 @@ namespace CBT_Backend.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}/update")]
         public async Task<ActionResult> UpdateAssessment([FromForm] Assessment_DTO assessment, [FromRoute] string id)
         {
@@ -93,6 +97,7 @@ namespace CBT_Backend.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}/delete")]
         public async Task<ActionResult> DeleteAssessment([FromRoute] string id)
         {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // import Users from '../Components/Users'
-// import { json } from 'react-router-dom'
+
 
 function useLogin() {
     const [error, setError] = useState(null)
@@ -33,8 +33,9 @@ function useLogin() {
             setIsLoading(false)
             setError(null)
             setData(response)
-            const Recponce = response.Token;
+            const Recponce = response;
             localStorage.setItem('user', JSON.stringify(Recponce))
+            console.log(Recponce);
         } catch (error) {
             setIsLoading(false)
             setError(error.message)

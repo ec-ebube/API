@@ -18,7 +18,7 @@ function CreateAcct() {
     const [Password, setPassword] = useState("")
     const [CoPassword, setCoPassword] = useState("")
     const [isMatch, setIsMatch] = useState(true)
-    const { createUser, data, isLoading, error } = useCreate()
+    const { createUser, /*data,*/ isLoading, error } = useCreate()
     const matchstate = "Password must match";
     //This function dertermines when the checbox is either chacked or unchecked
     const togglePassword = () => {
@@ -34,22 +34,22 @@ function CreateAcct() {
         if (Password !== CoPassword) {
             setIsMatch(false)
         } else {
-            const formdata = new FormData()
-            formdata.append('FirstName', FirstName)
-            // formdata.FirstName = FirstName;
-            formdata.append('LastName', LastName)
-            // formdata.LastName = LastName;
-            formdata.append('Email', Email)
-            // formdata.Email = Email;
-            formdata.append('PhoneNumber', PhoneNumber)
-            // formdata.PhoneNumber = PhoneNumber;
-            formdata.append('Password', Password)
-            // formdata.Password = Password;
-            // console.log(formdata);
-
             try {
+                const formdata = new FormData()
+                formdata.append('FirstName', FirstName)
+                // formdata.FirstName = FirstName;
+                formdata.append('LastName', LastName)
+                // formdata.LastName = LastName;
+                formdata.append('Email', Email)
+                // formdata.Email = Email;
+                formdata.append('PhoneNumber', PhoneNumber)
+                // formdata.PhoneNumber = PhoneNumber;
+                formdata.append('Password', Password)
+                // formdata.Password = Password;
+                // console.log(formdata);
+
+
                 await createUser(CreateUserURL, formdata)
-                console.log(data.FirstName);
                 navigate('/login')
             } catch (error) {
                 console.log(error.message);
@@ -161,7 +161,7 @@ function CreateAcct() {
                             <Button variant='contained' color='success' type='submit' startIcon={<ExitToAppRoundedIcon />} disabled={isLoading}> SignUp </Button>
                             <Stack>
                                 <span>Already have an account?</span><br></br>
-                                <Link to='/CreateAcct'>Login</Link>
+                                <Link to='/login'>Login</Link>
                             </Stack>
                         </Stack>
                     </Stack>

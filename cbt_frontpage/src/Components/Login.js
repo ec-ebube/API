@@ -30,10 +30,9 @@ function Login() {
         formdata.append('PassWord', Password)
         try {
             await loginUser(loginUserURL, formdata)
-            if (data) {
-                console.log(data);
-                navigate('/')
-            }
+
+            console.log(data);
+            navigate('/')
         } catch (error) {
             console.log(error.message);
         }

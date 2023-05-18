@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using CBT_Backend.DTO;
 using CBT_Backend.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CBT_Backend.Controllers
 {
+    // [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CoursesController : ControllerBase
@@ -18,6 +20,7 @@ namespace CBT_Backend.Controllers
             _icourses = icourses;
         }
 
+        [Authorize]
         [HttpGet("getAll")]
         public ActionResult getCorses()
         {

@@ -27,12 +27,11 @@ function useCreate() {
                     throw Error('server error')
                 }
             }
-            console.log(res);
+            const response =  res
+            console.log(response);
             setIsLoading(false)
-            setData(res.json())
-            return res.json()
-            // localStorage.setItem('user': JSON.stringify(res))
-            // console.log(resData);
+            setError(null)
+            setData(response)
         } catch (error) {
             setError(error.message)
         }

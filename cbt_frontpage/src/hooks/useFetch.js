@@ -1,17 +1,26 @@
-import { useEffect, useState }  from 'react'
+import { useEffect, useState } from 'react'
 
 
 const useFetch = (url) => {
     const [error, setError] = useState(null)
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    var user = JSON.parse(localStorage.getItem('user'));
+    var token = JSON.parse(user.Token);
+    token = token.token;
+    console.log(token);
+    if (token) {
+        
+    }
 
     useEffect(() => {
-      const abortCont = new AbortController()
-        fetch(url)
+        const abortCont = new AbortController()
+        fetch(url, {
+            headers: { Authorization: 'Bearer ' +token}
+        })
             .then(res => {
                 if (!res.ok) {
-                    throw Error("Unable to fetch");
+                    throw Error("Unable to fetch or Unauthorized Access");
                 }
 
                 return res.json()
@@ -21,17 +30,15 @@ const useFetch = (url) => {
                 setIsLoading(false)
                 setData(data)
                 setError(false)
-                // console.log(data);
             })
             .catch((err) => {
                 setIsLoading(false)
                 setError(err.message)
-                // console.log(err.message);
             })
-            return () => abortCont.abort()
-    }, [url])
-    
-  return {data, isLoading, error}
+        return () => abortCont.abort()
+    }, [url, token])
+
+    return { data, isLoading, error }
 }
 
 export default useFetch

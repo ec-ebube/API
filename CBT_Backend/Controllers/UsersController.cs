@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using CBT_Backend.DTO;
 using CBT_Backend.Repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CBT_Backend.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
@@ -18,6 +20,7 @@ namespace CBT_Backend.Controllers
             _iusers = iusers;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("getAll")]
         public async Task<ActionResult> getUsers()
         {
@@ -36,6 +39,7 @@ namespace CBT_Backend.Controllers
             }
         }
 
+        
         [HttpGet("{id}/get")]
         public async Task<ActionResult> getsingleUser([FromRoute] string Id)
         {

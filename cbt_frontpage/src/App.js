@@ -8,8 +8,11 @@ import NotFound from './NotFound';
 import Users from './Components/Users';
 import Course from './Components/Course';
 import Corrections from './Components/Corrections';
+import User from  './Components/User'
+import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
+  const { user } = useAuthContext();
 
   return (
     // All should be protected except login and register
@@ -17,12 +20,13 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/Login' element={<Login />} />
-          <Route path='/CreateAcct' element={<CreateAcct />} />
-          <Route path='/Users' element={<Users />} />
+          <Route path='/' element={user ? <Home /> : <Login />} />
+          <Route path='/Login' element={!user ? <Login /> : <Home />} />
+          <Route path='/CreateAcct' element={!user ? <CreateAcct /> : <Login />} />
+          <Route path='/Users' element={user ? <Users /> : <Login />} />
           <Route path='/courses/:Id' element={<Course />} />
-          <Route path='/answers/:Id' element={<Corrections />} />
+          <Route path='/answers/:Id' element={user ? <Corrections /> : <Login />} />
+          <Route path='/user/:Id/get' element={<User /> } />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
