@@ -1,52 +1,47 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 
-
-function useLogin() {
+function usePatch(url) {
     const [error, setError] = useState(null)
     const [data, setData] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(null)
 
-    const navigate = useNavigate();
-
-    const loginUser = async (url, formdata) => {
+    const updateUser = async (url, formdata) => {
         setError(false)
         setIsLoading(true)
-        // console.log(formdata);
+        console.log(formdata);
 
         const res = await fetch(url, {
-            method: 'POST',
+            method: 'PATCH',
             body: formdata,
+            // headers: { Authorization: 'Bearer ' +token}
         })
-
         try {
+            
             if (!res.ok) {
                 setIsLoading(false)
                 if (res.status === 401) {
                     throw Error('Unauthorized')
-                } else if (res.status === 403) {
+                }else if (res.status === 403)
+                {
                     throw Error('Forbiden')
-                } else {
+                }else if(res.status === 400){
+                    console.log('responce not okay')
+                    throw Error('Bad Request')
+                }else{
                     throw Error('server error')
                 }
             }
-
-            const response = await res.json()
+            const response =  res
+            console.log(response);
             setIsLoading(false)
             setError(null)
             setData(response)
-            const Recponce = response;
-            localStorage.setItem('user', JSON.stringify(Recponce))
-            console.log(Recponce);
-            navigate('/')
             window.location.reload()
         } catch (error) {
-            setIsLoading(false)
             setError(error.message)
         }
     }
-
-    return { loginUser, error, data, isLoading }
+  return { updateUser, data, isLoading, error}
 }
 
-export default useLogin
+export default usePatch

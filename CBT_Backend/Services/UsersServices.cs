@@ -125,7 +125,7 @@ namespace CBT_Backend.Services
                 editUser.LastName = users.LastName;
                 editUser.Email = users.Email;
                 editUser.PhoneNumber = users.PhoneNumber;
-                editUser.PasswordHash = BCrypt.Net.BCrypt.HashPassword(users.Password);
+                editUser.Role = users.Role;
                 editUser.Updated_at = DateTime.Now;
                 _cbtContext.Users.Attach(editUser);
                 _cbtContext.SaveChanges();

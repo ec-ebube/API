@@ -7,12 +7,16 @@ import { Button, FormControl, FormControlLabel, FormLabel, Link, Radio, RadioGro
 const choose = [];
 function Course() {
 
+  var user = JSON.parse(localStorage.getItem('user'));
+  var token = JSON.parse(user.Token);
+  token = token.token;
+
 
   const navigate = useNavigate();
 
   const { Id } = useParams()
   const url = assessmentsURL;
-  const { data, isLoading, error } = useFetch(url);
+  const { data, isLoading, error } = useFetch(url, token);
   let [answered, setAnswered] = useState(0);
   const [checked] = useState([]);
 
@@ -130,13 +134,15 @@ function Course() {
       >
 
         <h2>{checked.length} of {courseAssessment.length} answered </h2>
-        <Button variant='contained' color='success' size='large'
-          sx={{
-            maxWidth: '10vw',
-            marginLeft: 'auto'
-          }}
-          onClick={handleSubmit}
-        >Submit</Button>
+        <div className='Btn'>
+          <Button variant='contained' color='success' size='large'
+            sx={{
+              maxWidth: '10vw',
+              marginLeft: 'auto'
+            }}
+            onClick={handleSubmit}
+          >Submit</Button>
+        </div>
       </Stack>
     </div >
   )

@@ -1,13 +1,13 @@
+import { getUsers } from "../Endpoints";
 import useFetch from "../hooks/useFetch";
 
 const Users = () => {
-    // const [users, setUsers] = useState(null);
-    // setUsers([...users])
-    const {data, isLoading, error} = useFetch('https://localhost:7097/api/users/getAll')
+    var user = JSON.parse(localStorage.getItem('user'));
+    var token = JSON.parse(user.Token);
+    token = token.token;
     
-    // if(data){
-    //     console.log(data);
-    // }
+    const {data, isLoading, error} = useFetch(getUsers, token)
+    
 
 
     return (

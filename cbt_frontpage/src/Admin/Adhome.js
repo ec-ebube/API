@@ -1,50 +1,25 @@
-import { useState } from 'react';
-import { Button, Link, Stack } from "@mui/material";
-import { coursesUrl } from "../Endpoints";
-import useFetch from "../hooks/useFetch";
-import { TextField } from '@mui/material'
-import { Refresh } from "@mui/icons-material";
-// import Course from "./Course";
+import React, { useState } from 'react'
+import useFetch from '../hooks/useFetch';
+import { coursesUrl } from '../Endpoints';
+import { Button, Link, Stack, TextField } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 
-
-
-
-const Home = () => {
+function Adhome() {
     var user = JSON.parse(localStorage.getItem('user'));
     var token = JSON.parse(user.Token);
     token = token.token;
 
     const { data, isLoading, error } = useFetch(coursesUrl, token)
-
     const [minWidth, setMinWidth] = useState('35%')
     const [display, setDisplay] = useState('flex')
     const [searchArray, setSearchArray] = useState([])
-    // var searchArray = [];
-    if (data) {
-        // for (let index = 0; index < data.length; index++) {
-        //     var name = data[index].Name;
-        //     var des = data[index].Description;
-        //     searchArray.push({ name: name, des: des });
-
-
-        // }
-        // console.log(searchArray);
-        // console.log(data);
-    }
 
     // For the seach bar
     const [searchInput, setSearchInput] = useState([])
-    // const searchData = [];
-    if(searchInput){
+
+    if (searchInput) {
 
     }
-    // const Searchbar = [
-    //         data.map((data, index) => (
-    //             {
-    //                 name: {data.Name}
-    //             }
-    //         )
-    // ]
 
     const clickedSearch = () => {
         setMinWidth('85%')
@@ -145,4 +120,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Adhome

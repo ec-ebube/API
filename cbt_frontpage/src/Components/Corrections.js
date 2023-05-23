@@ -6,6 +6,9 @@ import { Stack } from '@mui/material';
 import { choosed } from './Course'
 
 function Corrections() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    var token = JSON.parse(user.Token);
+    token = token.token;
 
     let score = 0;
     let percentage = 0;
@@ -13,7 +16,7 @@ function Corrections() {
 
     const { Id } = useParams()
     const url = assessmentsURL;
-    const { data, isLoading, error } = useFetch(url);
+    const { data, isLoading, error } = useFetch(url, token);
 
     var courseAssessment = []
     if (data) {
