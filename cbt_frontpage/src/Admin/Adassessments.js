@@ -1,25 +1,20 @@
-import { coursesUrl, singleCourseURL } from "../Endpoints";
+import { assessmentsURL } from "../Endpoints";
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import useFetch from "../hooks/useFetch";
 import { Add, Delete, Edit } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 
-const Adcourses = () => {
-    const navigate = useNavigate();
-
+const Adassessments = () => {
     var user = JSON.parse(localStorage.getItem('user'));
     var token = JSON.parse(user.Token);
     token = token.token;
 
-    const { data, isLoading, error } = useFetch(coursesUrl, token)
+    const { data, isLoading, error } = useFetch(assessmentsURL, token)
     // console.log(data);
-
     const handleDelete = (id) => {
-        console.log(id);
-        fetch(singleCourseURL + id + '/delete',
+        fetch(assessmentsURL + id + '/delete',
             {
                 method: 'DELETE'
             },
@@ -29,10 +24,6 @@ const Adcourses = () => {
                 console.log('Deleted')
             })
     }
-    const handleCreate = () => {
-        navigate('/admin/createcourse')
-    }
-
     const actionClick = (data) => {
         return (
             <div className="flex flex-wrap gap-2">
@@ -49,11 +40,15 @@ const Adcourses = () => {
             {data && (
                 <div>
                     <div style={{ marginLeft: 'auto', maxWidth: '15rem' }}>
-                        <Button variant='contained' color='success' startIcon={<Add />} onClick={handleCreate}>Create Course</Button>
+                        <Button variant='contained' color='success' startIcon={<Add />}>Create an Assessment</Button>
                     </div>
                     <DataTable value={data} stripedRows scrollable paginator rows={5} rowsPerPageOptions={[5, 10, 15]} tableStyle={{ minWidth: '90%', minHeight: '20rem' }}>
-                        <Column field="Name" header="Name" />
-                        <Column field="Description" header="Description" />
+                        <Column field="Question" header="Question" />
+                        <Column field="Option_A" header="Option_A" />
+                        <Column field="Option_B" header="Option_B" />
+                        <Column field="Option_C" header="Option_C" />
+                        <Column field="Option_D" header="Option_D" />
+                        <Column field="Answer" header="Answer" />
                         <Column body={actionClick} header="Action" />
                     </DataTable>
                 </div>
@@ -62,4 +57,4 @@ const Adcourses = () => {
     );
 }
 
-export default Adcourses;
+export default Adassessments;

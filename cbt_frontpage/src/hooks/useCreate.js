@@ -32,11 +32,12 @@ function useCreate() {
             setIsLoading(false)
             setError(null)
             setData(response)
-            window.location.reload()
+            // window.location.reload()
         } catch (error) {
             setError(error.message)
         }
     }
+    
   return { createUser, data, isLoading, error}
 }
 

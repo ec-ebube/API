@@ -126,23 +126,6 @@ code {
   margin-bottom: 2px auto;
 }
 
-/* For the users */
-.user-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px dashed #774c4c;
-  text-align: left;
-  cursor: pointer;
-  text-decoration: none;
-}
-.user-preview:hover {
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.137);
-}
-.user-preview h3{
-  font-size: 20px;
-  color: #08e652;
-  margin-bottom: 8px;
-}
 .courseCard:hover {
   box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.137);
   border: 1px solid #333;

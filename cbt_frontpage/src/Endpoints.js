@@ -10,4 +10,5 @@ export const CreateUserURL = baseURL + 'users/create';
 export const loginUserURL = baseURL + 'login_';
 export const singleCourseURL = baseURL + 'courses/';
 export const userURL = baseURL + 'Users/';
-export const userUpdate = baseURL + 'Users/'
+export const userUpdate = baseURL + 'Users/';
+export const createcourse = baseURL + 'courses/create';

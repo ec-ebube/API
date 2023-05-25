@@ -13,6 +13,8 @@ import Users from './Admin/Users';
 import Adhome from './Admin/Adhome';
 import Adheader from './Admin/Adheader';
 import Adcourses from './Admin/Adcourses';
+import Adassessments from './Admin/Adassessments';
+import AdcreateCourse from './Admin/AdcreateCourse'
 
 function App() {
   const { user } = useAuthContext();
@@ -38,6 +40,8 @@ function App() {
             <Route path='/admin' element={user ? <Adhome /> : <Login />} />
             <Route path='/admin/Users' element={user ? <Users /> : <Login />} />
             <Route path='/admin/courses' element={user ? <Adcourses /> : <Login />} />
+            <Route path='/admin/assessments' element={user ? <Adassessments /> : <Login />} />
+            <Route path='/admin/createcourse' element={user ? <AdcreateCourse /> : <Login />} />
 
           </Route>
           <Route path='*' element={<NotFound />} />

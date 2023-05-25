@@ -26,7 +26,7 @@ function Adheader() {
           {user && <div>
             <Button href="/admin/users" className="Link" variant="text" color="error" startIcon={<SupervisedUserCircle className="logoutIcon" />}>Users</Button>
             <Button href="/admin/courses" className="Link" variant="text" color="error" startIcon={<SupervisedUserCircle className="logoutIcon" />}>Courses</Button>
-            <Button href="/admin/users" className="Link" variant="text" color="error" startIcon={<SupervisedUserCircle className="logoutIcon" />}>Assessments</Button>
+            <Button href="/admin/assessments" className="Link" variant="text" color="error" startIcon={<SupervisedUserCircle className="logoutIcon" />}>Assessments</Button>
             <Button className="Link" variant="text" color="error" /*startIcon={<CancelPresentationIcon />}*/ onClick={handleLogout}>Log Out</Button>
           </div>
           }
