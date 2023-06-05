@@ -22,6 +22,7 @@ const Adassessments = () => {
     const [Option_C, setOption_C] = useState('')
     const [Option_D, setOption_D] = useState('')
     const [Answer, setAnswer] = useState('')
+    const [CourseId, setCourseId] = useState('')
     const courseArray = [];
     // console.log(data);
     const handleDelete = (id) => {
@@ -36,10 +37,10 @@ const Adassessments = () => {
             })
     }
 
-        for (let index = 0; index <= courseData; index++) {
-            // courseArray.push({courseId: courseData[index].Id, courseName: courseData[index].Name})
-        }
-        // console.log(courseData[0]);
+    for (let index = 0; index <= courseData; index++) {
+        // courseArray.push({courseId: courseData[index].Id, courseName: courseData[index].Name})
+    }
+    // console.log(courseData[0]);
     // console.log(courseArray);
 
     const actionClick = (data) => {
@@ -84,6 +85,22 @@ const Adassessments = () => {
                         direction='column'
                         sx={{ textAlign: 'center' }}
                     >
+                        <FormControl>
+                            <InputLabel>Select Course</InputLabel>
+                            <Select
+                                type="Select"
+                                name="Answer"
+                                value={Answer}
+                                required
+                                onChange={(e) => setCourseId(e.target.value)}
+                            >
+                                {courseData && courseData.map((item, index) => (
+                                    <MenuItem key={index} value={courseData.Id}>
+                                        {courseData.Id}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <div>
                             <TextField
                                 label='Question'
@@ -114,7 +131,7 @@ const Adassessments = () => {
                                 onChange={(e) => setOption_B(e.target.value)}
                             />
                         </div><div>
-                            <TextField onClick={()=>{console.log(courseData)}}
+                            <TextField onClick={() => { console.log(courseData) }}
                                 label='OptionC'
                                 name="Option_C"
                                 required
@@ -134,18 +151,18 @@ const Adassessments = () => {
                         </div>
                         <FormControl>
                             <InputLabel>Answer</InputLabel>
-                        <Select
-                            type="Select"
-                            name="Answer"
-                            value={Answer}
-                            required
-                            onChange={(e) => setAnswer(e.target.value)}
-                        >
-                            <MenuItem value={Option_A}>Option A</MenuItem>
-                            <MenuItem value={Option_B}>Option B</MenuItem>
-                            <MenuItem value={Option_C}>Option C</MenuItem>
-                            <MenuItem value={Option_D}>Option D</MenuItem>
-                        </Select>
+                            <Select
+                                type="Select"
+                                name="Answer"
+                                value={Answer}
+                                required
+                                onChange={(e) => setAnswer(e.target.value)}
+                            >
+                                <MenuItem value={Option_A}>Option A</MenuItem>
+                                <MenuItem value={Option_B}>Option B</MenuItem>
+                                <MenuItem value={Option_C}>Option C</MenuItem>
+                                <MenuItem value={Option_D}>Option D</MenuItem>
+                            </Select>
                         </FormControl>
                         <Button variant="contained" color='success' type="submit"> Submit </Button>
                     </Stack>
