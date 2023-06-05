@@ -3,19 +3,27 @@ import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import useFetch from "../hooks/useFetch";
 import { Add, Delete, Edit } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Button, Stack, TextField } from "@mui/material";
+import { useState } from "react";
+import { Dialog } from 'primereact/dialog'
+import useCreate from "../hooks/useCreate";
+import { createcourse } from "../Endpoints";
 
 
 const Adcourses = () => {
-    const navigate = useNavigate();
 
     var user = JSON.parse(localStorage.getItem('user'));
     var token = JSON.parse(user.Token);
     token = token.token;
 
     const { data, isLoading, error } = useFetch(coursesUrl, token)
-    // console.log(data);
+    const [visible, setVisible] = useState(false)
+    const [Name, setName] = useState('')
+    const [Description, setDescription] = useState('')
+    const { createUser } = useCreate()
+    if (data) {
+        // console.log(data);
+    }
 
     const handleDelete = (id) => {
         console.log(id);
@@ -29,8 +37,18 @@ const Adcourses = () => {
                 console.log('Deleted')
             })
     }
-    const handleCreate = () => {
-        navigate('/admin/createcourse')
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const formdata = new FormData()
+            formdata.append('Name', Name)
+            formdata.append('Description', Description)
+
+            setVisible(false)
+            await createUser(createcourse, formdata)
+        } catch (error) {
+            console.log(Error);
+        }
     }
 
     const actionClick = (data) => {
@@ -49,7 +67,7 @@ const Adcourses = () => {
             {data && (
                 <div>
                     <div style={{ marginLeft: 'auto', maxWidth: '15rem' }}>
-                        <Button variant='contained' color='success' startIcon={<Add />} onClick={handleCreate}>Create Course</Button>
+                        <Button variant='contained' color='success' startIcon={<Add />} onClick={() => setVisible(true)}>Create Course</Button>
                     </div>
                     <DataTable value={data} stripedRows scrollable paginator rows={5} rowsPerPageOptions={[5, 10, 15]} tableStyle={{ minWidth: '90%', minHeight: '20rem' }}>
                         <Column field="Name" header="Name" />
@@ -58,8 +76,44 @@ const Adcourses = () => {
                     </DataTable>
                 </div>
             )}
+            <Dialog
+                header='Create Course'
+                visible={visible}
+                onHide={() => setVisible(false)}
+                style={{ width: '50vw' }}
+                breakpoints={{ '960px': '75vw', '641px': '100vw' }}
+            >
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={2} direction='column'
+                        sx={{ textAlign: 'center' }}
+                    >
+                        <div>
+                            <TextField
+                                label='Course Name'
+                                name='Name'
+                                required
+                                variant='outlined'
+                                color='success'
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                label='Course Description'
+                                name='Description'
+                                required
+                                variant="outlined"
+                                color="success"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                        <Button variant="contained" color='success' type="submit"> Submit </Button>
+                    </Stack>
+                </form>
+            </Dialog>
         </div>
     );
 }
+
 
 export default Adcourses;

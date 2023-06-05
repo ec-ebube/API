@@ -138,7 +138,7 @@ function User() {
                         sx={{ textAlign: 'center' }}
                     >
                         <div>
-                            <p>FirstName: </p>
+                            <p>FirstName:  </p>
                             <TextField
                                 value={FirstName}
                                 name='FirstName'

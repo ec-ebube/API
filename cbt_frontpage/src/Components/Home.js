@@ -4,7 +4,6 @@ import { coursesUrl } from "../Endpoints";
 import useFetch from "../hooks/useFetch";
 import { TextField } from '@mui/material'
 import { Refresh } from "@mui/icons-material";
-// import Course from "./Course";
 
 
 
@@ -19,38 +18,18 @@ const Home = () => {
     const [minWidth, setMinWidth] = useState('35%')
     const [display, setDisplay] = useState('flex')
     const [searchArray, setSearchArray] = useState([])
-    // var searchArray = [];
-    if (data) {
-        // for (let index = 0; index < data.length; index++) {
-        //     var name = data[index].Name;
-        //     var des = data[index].Description;
-        //     searchArray.push({ name: name, des: des });
 
-
-        // }
-        // console.log(searchArray);
-        // console.log(data);
-    }
-
-    // For the seach bar
     const [searchInput, setSearchInput] = useState([])
-    // const searchData = [];
     if(searchInput){
 
     }
-    // const Searchbar = [
-    //         data.map((data, index) => (
-    //             {
-    //                 name: {data.Name}
-    //             }
-    //         )
-    // ]
 
     const clickedSearch = () => {
         setMinWidth('85%')
         setDisplay('none')
     }
-    const unClickedSearch = () => {
+    const unClickedSearch = (e) => {
+        e.preventDefault();
         if ((setMinWidth) !== ('35%')) {
             window.location.reload()
         } else {
@@ -68,10 +47,8 @@ const Home = () => {
                 .toLowerCase()
                 .includes(inputValue.toLowerCase())
         });
-        // console.log(inputValue);
         setSearchInput(filteredData)
         setSearchArray(filteredData)
-        // console.log(searchArray);
     }
     return (
         <Stack>
@@ -83,7 +60,7 @@ const Home = () => {
                         color='success'
                         label='Search'
                         sx={{ minWidth: { minWidth } }}
-                        onClick={clickedSearch}
+                        onFocus={clickedSearch}
                         // value={searchInput}
                         onChange={handleChange}
                     />
