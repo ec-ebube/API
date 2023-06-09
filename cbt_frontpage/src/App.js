@@ -38,7 +38,7 @@ function App() {
   return (
     // All should be protected except login and register
     <div className="App">
-      <Header />
+      {!user && <Header />}
       <div className="content">
         <Routes>
           {/* Logged Out User Landing page */}
