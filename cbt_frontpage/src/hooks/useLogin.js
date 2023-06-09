@@ -38,8 +38,13 @@ function useLogin() {
             const Recponce = response;
             localStorage.setItem('user', JSON.stringify(Recponce))
             console.log(Recponce);
-            navigate('/')
-            window.location.reload()
+            if (Recponce.Role === 'Admin') {
+                navigate('/admin')
+                window.location.reload()
+            } else {
+                navigate('/')
+                window.location.reload()
+            }
         } catch (error) {
             setIsLoading(false)
             setError(error.message)

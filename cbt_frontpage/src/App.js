@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, /*useNavigate,*/  Route } from 'react-router-dom'
+// import NoUserHeader from './Components/NoUserHeader';
 import Header from './Components/Header';
 import Login from './Components/Login';
 import Footer from './Components/Footer';
@@ -18,35 +19,59 @@ import Adassessments from './Admin/Adassessments';
 function App() {
   const { user } = useAuthContext();
 
+  // const navigate = useNavigate();
+
+  if (user) {
+    var dUser = JSON.parse(user)
+    if (dUser.Role === "Admin") {
+      // navigate("/Admin")
+      var path = '/admin'
+
+    } else if (dUser.Role === "User") {
+      // navigate("/")
+      var nav = '/'
+    }
+  }
+
+  // console.log(dUser);
+
   return (
     // All should be protected except login and register
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <div className="content">
         <Routes>
-          {/* Users LAnding page */}
-          <Route path='/' element={<Header />} >
-            <Route path='/' element={user ? <Home /> : <Login />} />
-            <Route path='/Login' element={!user ? <Login /> : <Home />} />
-            <Route path='/CreateAcct' element={!user ? <CreateAcct /> : <Login />} />
-            <Route path='/courses/:Id' element={<Course />} />
-            <Route path='/answers/:Id' element={user ? <Corrections /> : <Login />} />
-            <Route path='/user/:Id/get' element={<User />} />
-          </Route>
+          {/* Logged Out User Landing page */}
+          {/* <Route path='Login/' element={<NoUserHeader />}> */}
+          <Route path='Login/' element={<Login />} />
+          <Route path='CreateAcct/' element={<CreateAcct />} />
+          {/* </Route> */}
+
 
           {/* Admin Landing page */}
-          <Route path='/admin' element={<Adheader />}>
-            <Route path='/admin' element={user ? <Adhome /> : <Login />} />
-            <Route path='/admin/Users' element={user ? <Users /> : <Login />} />
-            <Route path='/admin/courses' element={user ? <Adcourses /> : <Login />} />
-            <Route path='/admin/assessments' element={user ? <Adassessments /> : <Login />} />
-
+          <Route path={path} element={user && dUser.Role === "Admin" ? <Adheader /> : <Login />}>
+            <Route path={path} element={user && dUser.Role === "Admin" ? <Adhome /> : <Login />} />
+            <Route path={path + 'Users'} element={user && dUser.Role === "Admin" ? <Users /> : <Login />} />
+            <Route path='/admin/courses' element={user && dUser.Role === "Admin" ? <Adcourses /> : <Login />} />
+            <Route path='/admin/assessments' element={user && dUser.Role === "Admin" ? <Adassessments /> : <Login />} />
+            {/* {user && dUser.Role === 'Admin' ? theRoute : theRoutes} */}
           </Route>
+
+
+          {/* Users Landing page */}
+          <Route path='/' element={user && dUser.Role === 'User' ? <Header /> : <Login />} >
+            <Route path={nav} element={user && dUser.Role === "User" ? <Home /> : <Login />} />
+            <Route path={nav + 'courses/:Id'} element={<Course />} />
+            <Route path={nav + 'answers/:Id'} element={user ? <Corrections /> : <Login />} />
+            <Route path={nav + 'user/:Id/get'} element={<User />} />
+          </Route>
+
+
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
       <Footer />
-    </div>
+    </div >
   );
 }
 

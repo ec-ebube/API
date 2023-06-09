@@ -1,4 +1,4 @@
-import { assessmentsURL, coursesUrl } from "../Endpoints";
+import { CreateAssessURL, assessmentsURL, coursesUrl } from "../Endpoints";
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import useFetch from "../hooks/useFetch";
@@ -6,6 +6,7 @@ import { Add, Delete, Edit } from "@mui/icons-material";
 import { Button, FormControl, InputLabel, MenuItem, Select, Stack, TextField } from "@mui/material";
 import { Dialog } from "primereact/dialog";
 import { useState } from "react";
+import useCreate from "../hooks/useCreate";
 
 
 const Adassessments = () => {
@@ -23,7 +24,8 @@ const Adassessments = () => {
     const [Option_D, setOption_D] = useState('')
     const [Answer, setAnswer] = useState('')
     const [CourseId, setCourseId] = useState('')
-    const courseArray = [];
+
+    const { createUser } = useCreate()
     // console.log(data);
     const handleDelete = (id) => {
         fetch(assessmentsURL + id + '/delete',
@@ -37,11 +39,25 @@ const Adassessments = () => {
             })
     }
 
-    for (let index = 0; index <= courseData; index++) {
-        // courseArray.push({courseId: courseData[index].Id, courseName: courseData[index].Name})
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const formdata = new FormData()
+            formdata.append('Question', Question)
+            formdata.append('Option_A', Option_A)
+            formdata.append('Option_B', Option_B)
+            formdata.append('Option_C', Option_C)
+            formdata.append('Option_D', Option_D)
+            formdata.append('Answer', Answer)
+            formdata.append('CourseId', CourseId)
+
+            setVisible(false)
+            await createUser(CreateAssessURL, formdata)
+        } catch (error) {
+
+        }
     }
-    // console.log(courseData[0]);
-    // console.log(courseArray);
+
 
     const actionClick = (data) => {
         return (
@@ -79,7 +95,7 @@ const Adassessments = () => {
                 style={{ width: '50vw' }}
                 breakpoints={{ '960px': '75vw', '641px': '100vw' }}
             >
-                <form>
+                <form onSubmit={handleSubmit}>
                     <Stack
                         spacing={2}
                         direction='column'
@@ -89,14 +105,15 @@ const Adassessments = () => {
                             <InputLabel>Select Course</InputLabel>
                             <Select
                                 type="Select"
-                                name="Answer"
-                                value={Answer}
+                                name="CourseId"
+                                value={CourseId}
                                 required
+                                color='success'
                                 onChange={(e) => setCourseId(e.target.value)}
                             >
-                                {courseData && courseData.map((item, index) => (
+                                {courseData && courseData.map((courseData, index) => (
                                     <MenuItem key={index} value={courseData.Id}>
-                                        {courseData.Id}
+                                        {courseData.Name}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -156,6 +173,7 @@ const Adassessments = () => {
                                 name="Answer"
                                 value={Answer}
                                 required
+                                color='success'
                                 onChange={(e) => setAnswer(e.target.value)}
                             >
                                 <MenuItem value={Option_A}>Option A</MenuItem>

@@ -26,6 +26,7 @@ const Users = () => {
     const [Password, setPassword] = useState('')
     const Role = 'Admin'
     const { createUser } = useCreate()
+    const [userId, setUserId] = useState(null)
     // console.log(data[0].Id);
 
     const handleDelete = (id) => {
@@ -61,13 +62,13 @@ const Users = () => {
         }
     }
 
-    const onDemand = (id) => {
+    const onDemand = () => {
         return (
             <div>
                 Sure you want to delete User?
-                {console.log(id)}
+                {userId}
                 <Stack spacing={4} direction='row'>
-                    <Button onClick={() => handleDelete(data.Id)} variant="contained" color='error'>Delete</Button>
+                    <Button onClick={() => handleDelete(userId)} variant="contained" color='error'>Delete</Button>
                     <Button onClick={() => setSee(false)} variant="contained" color='info'>Cancel</Button>
                 </Stack>
             </div>
@@ -81,6 +82,7 @@ const Users = () => {
                 <Button type="button" onClick={() => {
                     setSee(true)
                     onDemand(data.id)
+                    setUserId(data.Id)
                 }}><Delete /></Button>
             </div>
         )

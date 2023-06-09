@@ -67,7 +67,7 @@ function Adhome() {
             {searchArray &&
                 <Stack sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}> {
                     searchArray.map((data, index) => (
-                        <Link href={'/courses/' + data.Id}
+                        <Stack href={'/courses/' + data.Id}
                             className="courseCard"
                             sx={{
                                 textDecoration: 'none',
@@ -86,7 +86,7 @@ function Adhome() {
                                 <h3 className="CourseName">{data.Name}</h3>
                                 <p>Description: {data.Description}</p>
                             </div>
-                        </Link>
+                        </Stack>
                     ))
                 }</Stack>
             }

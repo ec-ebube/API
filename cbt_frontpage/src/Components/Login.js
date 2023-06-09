@@ -1,8 +1,17 @@
 import React from 'react'
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Stack, Button, /*InputAdornment,*/ TextField } from '@mui/material';
+import {
+    Stack,
+    Button,
+    /*InputAdornment,*/
+    TextField,
+    useMediaQuery,
+    useTheme,
+    FormControl
+} from '@mui/material';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import SpaIcon from '@mui/icons-material/Spa';
 import useLogin from '../hooks/useLogin';
 import { loginUserURL } from '../Endpoints';
 
@@ -17,7 +26,12 @@ function Login() {
     const navigate = useNavigate()
     const formHeader = "Welcome to EverGreen CBT";
 
-    
+    const theme = useTheme();
+    // console.log(theme);
+    const isMatch = useMediaQuery(theme.breakpoints.down('md'))
+    // console.log(isMatch);
+
+
     //For the error, the data and the isLoading Message;
     const [Password, setPassword] = useState("")
     const [Email, setEmail] = useState("")
@@ -42,11 +56,12 @@ function Login() {
     return (
         <Stack className="Login">
             {isLoading && <div>Loading ...</div>}
-            <Stack className='loginform'>
+            {!isMatch ? <Stack className='loginform'>
+                {error && <div>{error}</div>}
+
                 <Stack className="formText">
                     {formHeader}
                 </Stack>
-                {error && <div>{error}</div>}
                 <form className='signin' onSubmit={handleLogin}>
                     <Stack direction='column' spacing={5}>
                         <Stack spacing={1} direction='column'>
@@ -59,6 +74,9 @@ function Login() {
                                 color='success'
                                 name='Email'
                                 onChange={(e) => setEmail(e.target.value)}
+                                sx={{
+                                    maxWidth: '20vw'
+                                }}
                             />
                         </Stack>
                         <Stack spacing={1} direction='column'>
@@ -72,14 +90,9 @@ function Login() {
                                 color='success'
                                 name='PassWord'
                                 onChange={(e) => setPassword(e.target.value)}
-                                // inputProps={{
-                                //     startAdornment: <InputAdornment position='end' id="checkbox"
-                                //         type="checkbox"
-                                //         checked={isShown}
-                                //         onChange={togglePassword}
-                                //         endIcon={<LoginRoundedIcon />}
-                                //     />
-                                // }}
+                                sx={{
+                                    maxWidth: '20vw'
+                                }}
                             />
                             <input
                                 id="checkbox"
@@ -98,6 +111,53 @@ function Login() {
                     </Stack>
                 </form>
             </Stack>
+                :
+                <Stack direction='column' spacing={5} className='Login2' sx={{
+                    minWidth: '100%'
+                }}>
+                    {error && <div>{Error}</div>}
+                    {isLoading && <div>Loading ...</div>}
+                    <Stack>
+                        <SpaIcon />
+                    </Stack>
+                    <FormControl onSubmit={handleLogin} sx={{
+                        minWidth: '90%'
+                    }}>
+                        <TextField type='email'
+                            label='Email'
+                            variant='standard'
+                            autoFocus
+                            required
+                            color='success'
+                            name='Email'
+                            onChange={(e) => setEmail(e.target.value)}
+                            sx={{
+                                minWidth: '100%',
+                                marginBottom: '5vh'
+                            }}
+                        />
+                        <TextField
+                            type={isShown ? "text" : "password"}
+                            label='Password'
+                            required
+                            variant='standard'
+                            color='success'
+                            name='PassWord'
+                            onChange={(e) => setPassword(e.target.value)}
+                            sx={{
+                                minWidth: '100%',
+                                marginBottom: '5vh'
+                            }}
+                        />
+                        <Stack spacing={5} direction='column'>
+                            <Button variant='contained' color='success' type='submit' startIcon={<LoginRoundedIcon />} disabled={isLoading}> Login </Button>
+                            <Stack>
+                                <span>Don't have an account?</span><br></br>
+                                <Link to='/CreateAcct'>Create Account</Link>
+                            </Stack>
+                        </Stack>
+                    </FormControl>
+                </Stack>}
         </Stack>
     )
 }

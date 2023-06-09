@@ -1,7 +1,7 @@
 import { createContext, useReducer, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
-
 export const authReducer = (state, action) => {
     switch (action.type) {
         case 'LOGIN':
@@ -15,6 +15,8 @@ export const authReducer = (state, action) => {
 }
 
 export const AuthContextProvider = ({ children }) => {
+
+    // const navigate = useNavigate()
     const [state, dispatch] = useReducer(authReducer, {
         user: null
     })
@@ -22,15 +24,19 @@ export const AuthContextProvider = ({ children }) => {
     // console.log("AuthContext state", state);
 
     useEffect(() => {
-      const user = localStorage.getItem('user');
+        const user = localStorage.getItem('user');
 
-      if (user) {
-        dispatch({type: 'LOGIN', payload: user})
-      }
-    
-      
+        // var theUser = JSON.parse(user);
+
+        if (user) {
+            
+                dispatch({ type: 'LOGIN', payload: user })
+               
+        }
+
+
     }, [])
-    
+
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
