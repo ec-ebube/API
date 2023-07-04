@@ -20,34 +20,7 @@ namespace CBT_Backend.Services
             _cbtContext = cbtContext;
             _config = config;
         }
-        // public async Task<Authenticate_DTO> Authenticate(string email, string password)
-        // {
-        //     try
-        //     {
-        //         var user = await _cbtContext!.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
-        //         if (user == null)
-        //         {
-        //             return null!;
-        //         }
-        //         if (BCrypt.Net.BCrypt.Verify(user.PasswordHash, password))
-        //         {
-        //             var authUser = new Authenticate_DTO();
-        //             authUser.Email = user.Email;
-        //             authUser.Id = user.Id;
-        //             authUser.FirstName = user.FirstName;
-        //             authUser.LastName = user.LastName;
-        //             authUser.PhoneNumber = user.PhoneNumber;
-        //             authUser.Role = user.Role;
 
-        //             return authUser;
-        //         }
-
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //        return null!;
-        //     }
-        // }
         public async Task<Authenticate_DTO> Authenticate(string email, string password)
 {
     try
